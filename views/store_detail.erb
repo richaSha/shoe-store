@@ -1,11 +1,32 @@
 <div class="breadcrumb">
   <li><a href="/">Home</a></li>
   <li><a href="/store">Store</a></li>
-  <li><%=@store.name%></li>
+  <li><%=@store.name%> <%=@store.id%></li>
 </div>
 <div class="wrapper">
-  <h1><%=@store.name%></h1>
+<h1><%=@store.name%></h1>
   <ul>
     <%if @store.brands.any?()%>
+      <% @store.brands.each do |brand|%>
+        <li><b>Brand Name:</b> <%= brand.name%></li>
+        <li><b>Price:</b><%= brand.price%></li>
+      <%end%>
+    <%else%>
+      <p>No Shoe Brand Listed Under This Shop </p>
+    <%end%>
+    <form class="" action="/add_brand/<%=@store.id%>" method="post">
+      <div class="input-group">
+        <span class="input-group-addon"> Add New Brand To Store: </span>
+        <select class="form-control" name="new_brand">
+            <% @brands.each do |brand|%>
+              <%if !@store.brands.include?(brand)%>
+                <option value="<%=brand.id%>"><%=brand.name%></option>
+              <%end%>
+            <%end%>
+        </select>
+      </div>
+      <br>
+      <button type="submit" name="button btn btn-success">Add</button>
+    </form>
   </ul>
 </div>

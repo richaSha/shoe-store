@@ -73,3 +73,43 @@ patch ('/brand/edit/:id') do
   end
   redirect to('/brand')
 end
+
+get('/store/:id') do
+  store_id = params[:id].to_i
+  @store = Store.find(store_id)
+  @brands = Brand.all()
+  erb(:store_detail)
+end
+
+post('/add_brand/:id') do
+  store_id = params[:id].to_i
+  brand_id = params.fetch('new_brand')
+  @store = Store.find(store_id)
+  if brand_id != ""
+    new_brand = Brand.find(brand_id.to_i)
+    @store.brands.push(new_brand)
+  end
+  @brands = Brand.all()
+  erb(:store_detail)
+end
+
+get('/brand/:id') do
+  binding.pry
+  brand_id = params[:id].to_i
+  @brand = Brand.find(brand_id)
+  @stores = Store.all()
+  erb(:brand_detail)
+end
+
+post('/add_store/:id') do
+  binding.pry
+   brand_id = params[:id].to_i
+   store_id= params.fetch('new_store')
+  @brand = Brand.find(brand_id)
+  if store_id != ""
+    new_store = Store.find(store_id.to_i)
+    @brand.stores.push(new_store)
+  end
+  @stores = Store.all()
+  erb(:brand_detail)
+end
