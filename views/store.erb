@@ -4,15 +4,38 @@
 </div>
 <div class="wrapper">
   <div class="edit">
-    <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal">
+    <button type="button" class="btn btn-info btn-xs add_button" data-toggle="modal" data-target="#myModal">
       <span class="glyphicon glyphicon-plus"></span>
+    </button>
+    <button type="button" class="btn btn-info btn-xs edit_button">
+        <span class="glyphicon glyphicon-pencil"></span>
+    </button>
+    <button type="button" class="btn btn-info btn-xs delete">
+      <span class="glyphicon glyphicon-trash"></span>
     </button>
   </div>
   <h1>List of Shoe Store</h1>
   <% if @stores.any?() %>
     <ul>
       <% @stores.each do |store|%>
-        <li><a href="store/<%= store.id %>"><%= store.name %></a></li>
+        <div class="">
+          <li class="store_list"><a href="store/<%= store.id %>"><%= store.name %></a>
+            <form class="" action="/store/<%= store.id %>" method="post">
+              <input type="hidden" name="_method" value="delete">
+              <button type="submit" class="delete_icon icon hide">
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+            </form>
+            <button type="button" class="edit_icon icon hide">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+          </li>
+          <form class="edit_store_list hide" action="/store/edit/<%= store.id %>" method="post">
+            <input type="hidden" name="_method" value="patch">
+            <input type="text" name="<%= store.id %>" value="<%= store.name %>">
+            <button type="submit" name="button">Edit</button>
+          </form>
+        </div>
       <%end%>
     </ul>
   <%else%>

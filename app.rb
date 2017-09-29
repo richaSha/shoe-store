@@ -7,12 +7,12 @@ get('/') do
 end
 
 get('/store') do
-  @stores = Store.all()
+  @stores = Store.order(:id)
   erb(:store)
 end
 
 get('/brand') do
-  @brands = Brand.all()
+  @brands = Brand.order(:id)
   erb(:brand)
 end
 
@@ -41,5 +41,35 @@ end
 get ('/brand/:id') do
   brand_id = params[:id].to_i
   @brand = Brand.find(brand_id)
-  erb(:store_detail)
+  erb(:brand_detail)
+end
+
+delete('/store/:id') do
+  store_id = params[:id].to_i
+  Store.where(id: store_id).destroy_all
+  redirect to('/store')
+end
+
+delete('/brand/:id') do
+  brand_id = params[:id].to_i
+  Brand.where(id: brand_id).destroy_all
+  redirect to('/brand')
+end
+
+patch ('/store/edit/:id') do
+  store_id = params[:id]
+  store_name = params.fetch(store_id).strip
+  if store_name != ""
+    Store.update(store_id.to_i , {:name => store_name})
+  end
+  redirect to('/store')
+end
+
+patch ('/brand/edit/:id') do
+  brand_id = params[:id]
+  brand_name = params.fetch(brand_id).strip
+  if brand_name != ""
+    Brand.update(brand_id.to_i , {:name => brand_name})
+  end
+  redirect to('/brand')
 end
