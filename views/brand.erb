@@ -3,6 +3,11 @@
   <li>Brand List</li>
 </div>
 <div class="wrapper">
+  <div class="edit">
+    <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal">
+      <span class="glyphicon glyphicon-plus"></span>
+    </button>
+  </div>
   <h1>List of Shoe Brands</h1>
   <% if @brands.any?() %>
     <ul>
@@ -13,7 +18,7 @@
   <%else%>
     <p class="no_list">Sorry! Currently No List Available</p>
     <p>Please Add Brand Name</p>
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Brand</button>
   <%end%>
   <!-- Modal -->
   <div id="myModal" class="modal fade" role="dialog">
@@ -27,7 +32,9 @@
         </div>
         <div class="modal-body">
           <form class="" action="/brand" method="post">
-            <input type="text" name="name" value="">
+            <input type="text" name="name" placeholder="Brand Name">
+            <br>
+            <input type="text" name="price" placeholder="Price in dollar">
             <br>
             <button type="submit" name="button" >Add</button>
           </form>

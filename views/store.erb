@@ -3,6 +3,11 @@
   <li>Store List</li>
 </div>
 <div class="wrapper">
+  <div class="edit">
+    <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal">
+      <span class="glyphicon glyphicon-plus"></span>
+    </button>
+  </div>
   <h1>List of Shoe Store</h1>
   <% if @stores.any?() %>
     <ul>
@@ -13,6 +18,27 @@
   <%else%>
     <p class="no_list">Sorry! Currently No List Available</p>
     <p>Please Add Store Name</p>
-    <button type="button" class="btn btn-success" name="button">Add</button>
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Store</button>
   <%end%>
+  <!-- Modal -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add New Store</h4>
+        </div>
+        <div class="modal-body">
+          <form class="" action="/store" method="post">
+            <input type="text" name="name" placeholder="Store Name">
+            <br>
+            <button type="submit" name="button" >Add</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
