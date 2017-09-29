@@ -1,0 +1,18 @@
+<div class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li>Store List</li>
+</div>
+<div class="wrapper">
+  <h1>List of Shoe Store</h1>
+  <% if @stores.any?() %>
+    <ul>
+      <% @stores.each do |store|%>
+        <li><a href="store/<%= store.id %>"><%= store.name %></a></li>
+      <%end%>
+    </ul>
+  <%else%>
+    <p class="no_list">Sorry! Currently No List Available</p>
+    <p>Please Add Store Name</p>
+    <button type="button" class="btn btn-success" name="button">Add</button>
+  <%end%>
+</div>

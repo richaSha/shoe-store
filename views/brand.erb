@@ -1,0 +1,39 @@
+<div class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li>Brand List</li>
+</div>
+<div class="wrapper">
+  <h1>List of Shoe Brands</h1>
+  <% if @brands.any?() %>
+    <ul>
+      <% @brands.each do |brand|%>
+        <li><a href="store/<%= brand.id %>"><%= brand.name %></a></li>
+      <%end%>
+    </ul>
+  <%else%>
+    <p class="no_list">Sorry! Currently No List Available</p>
+    <p>Please Add Brand Name</p>
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+  <%end%>
+  <!-- Modal -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add New Brand</h4>
+        </div>
+        <div class="modal-body">
+          <form class="" action="/brand" method="post">
+            <input type="text" name="name" value="">
+            <br>
+            <button type="submit" name="button" >Add</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
