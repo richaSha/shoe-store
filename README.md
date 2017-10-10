@@ -14,6 +14,7 @@ _It will show all shoe with all available brand with add, delete and edit functi
 * _Open in browser of your choice_
 *_create db_ : rake db:create
 *_create table_: rake sb:migrate
+*_rub_:ruby app.rb
 
 ## Specifications
 

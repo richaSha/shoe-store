@@ -1,4 +1,5 @@
 require("bundler/setup")
+require("pry")
 Bundler.require(:default)
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
@@ -52,7 +53,7 @@ end
 
 delete('/brand/:id') do
   brand_id = params[:id].to_i
-  Brand.where(id: brand_id).destroy_all
+  Brand.delete(brand_id)
   redirect to('/brand')
 end
 

@@ -6,27 +6,4 @@
 <div class="wrapper">
 <h4>Name: <%=@brand.name%></h4>
 <h4>Price: <%=@brand.price%></h4>
-  <ul>
-    <%if @brand.stores.any?()%>
-      <% @brand.stores.each do |store|%>
-        <li><b>Store Name:</b> <%= store.name%></li>
-      <%end%>
-    <%else%>
-      <p>No Shoe Store Listed For This Brand </p>
-    <%end%>
-    <form class="" action="/add_store/<%=@brand.id%>" method="post">
-      <div class="input-group">
-        <span class="input-group-addon"> Add New Store For Brand: </span>
-        <select class="form-control" name="new_store">
-            <% @stores.each do |store|%>
-              <%if !@brand.stores.include?(store)%>
-                <option value="<%=store.id%>"><%=store.name%></option>
-              <%end%>
-            <%end%>
-        </select>
-      </div>
-      <br>
-      <button type="submit" name="button btn btn-success">Add</button>
-    </form>
-  </ul>
 </div>
